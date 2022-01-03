@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dice Roll</title>
+</head>
+<body>
+<header th:replace="partials :: head"></header>
+    <h1>You guessed:</h1>
+    <h3 th:text="${userGuess}"></h3>
+
+    <h1>Dice roll: </h1>
+    <h3 th:text="${n}"></h3>
+
+
+    <form action="/roll-dice" method="post">
+        <input type="text" name="userGuess" id="userGuess-ip" class="field" />
+        <button>Submit Guess</button>
+    </form>
+
+<footer th:include="partials :: foot"></footer>
+</body>
+</html>
