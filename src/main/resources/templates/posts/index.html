@@ -6,12 +6,12 @@
 </head>
 <body>
 <div th:each="post : ${posts}">
+
     <h2 th:text="${post.getTitle()}"></h2>
     <p th:text="${post.getBody()}"></p>
-<!--    <form action="/index" method="post">-->
-<!--        <input type="text" name="deletePost" id="deletePost-ip" class="field" />-->
-<!--        <button>Delete Post</button>-->
-<!--    </form>-->
+    <form action="/posts/index" method="post">
+        <button name="deletePost" id="deletePost" th:value="${post.getId()}">Delete Post</button>
+    </form>
 </div>
 
 

@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 
@@ -24,8 +25,15 @@ public class PostController {
         return "posts/index";
     }
 
-//    @PostMapping("/posts")
-//    public String delet
+    @PostMapping("/posts/index")
+    public String deletePost(@RequestParam(name="deletePost") Long id, Model model){
+        System.out.println("id = " + id);
+        postDao.deleteById(id);
+        model.addAttribute("posts", postDao.findAll());
+        return "posts/index";
+    }
+
+
 
 //    @GetMapping("/posts")
 //    public String postIndex(Model model){
