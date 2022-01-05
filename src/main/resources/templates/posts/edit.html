@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Post</title>
+</head>
+<body>
+
+    <form th:action="'/posts/edit/' + ${post.getId()}" method="post">
+        <label>Blog Title:</label>
+        <input type="text" name="title" th:placeholder="${post.getTitle()}" th:value="${post.getTitle()}" />
+<!--        <h2 th:text="${post.getTitle()}" th:placeholder="${post.getTitle()}" th:value="${post.getTitle()}"></h2>-->
+        <br>
+
+<!--        <input type="text"  name="body"  th:value="${post.getBody()}" />-->
+
+        <label>Body:
+                <input type="text"  name="body" size="100"  th:value="${post.getBody()}" />
+<!--<textarea name="bodyArea" form="blogEdit" th:value="${post.getBody()}" rows="20" cols="50">-->
+<!--</textarea>-->
+        </label>
+<br>
+        <button type="submit" name="confirmEdit">Confirm Edits</button>
+
+
+
+    </form>
+
+
+</body>
+</html>

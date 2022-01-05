@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Post Index</title>
@@ -11,6 +11,9 @@
     <p th:text="${post.getBody()}"></p>
     <form action="/posts/index" method="post">
         <button name="deletePost" id="deletePost" th:value="${post.getId()}">Delete Post</button>
+    </form>
+    <form th:action="'/posts/edit/' + ${post.getId()}">
+        <button name="editPost" id="editPost" th:value="${post.getId()}">Edit Post</button>
     </form>
 </div>
 

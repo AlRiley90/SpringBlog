@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Controller
 public class PostController {
@@ -32,35 +33,37 @@ public class PostController {
         model.addAttribute("posts", postDao.findAll());
         return "posts/index";
     }
+    @GetMapping("/posts/edit/{id}")
+    public String viewPostToEdit(@PathVariable Long id, Model model){
+        model.addAttribute("title", "Edit Post");
+        Optional<Post> currentPost = postDao.findById(id);
+        Post post = currentPost.get();
+        model.addAttribute("post", post);
+        return "posts/edit";
+    }
+
+    @PostMapping("/posts/edit/{id}")
+    public String editPost(@PathVariable Long id, @RequestParam String title, @RequestParam String body){
+        Post post = postDao.getById(id);
+        post.setTitle(title);
+        post.setBody(body);
+        postDao.save(post);
+        return "redirect:/posts";
+    }
 
 
 
-//    @GetMapping("/posts")
-//    public String postIndex(Model model){
-//
-//        ArrayList<Post> allPosts = new ArrayList<>();
-//        Post testPost1 = new Post();
-//        testPost1.setTitle("Test Post");
-//        testPost1.setBody("This is a test of the body");
-//        allPosts.add(testPost1);
-//
-//        Post testPost2 = new Post();
-//        testPost2.setTitle("Test Post 2");
-//        testPost2.setBody("This is a test of the body");
-//        allPosts.add(testPost2);
-//        model.addAttribute("allPosts", allPosts);
-//        return "posts/index";
-//    }
-//
-//    @GetMapping("/posts/{id}")
-//    public String individualPost(@PathVariable int id, Model model){
-//        Post testPost = new Post();
-//        testPost.setTitle("Test Post");
-//        testPost.setBody("This is a test of the body");
-//        model.addAttribute("testPost", testPost);
-//
-//        return "posts/show";
-//    }
+    @GetMapping("/posts/{id}")
+    public String editIndividualPost(@PathVariable Long id, Model model){
+        Post testPost = new Post();
+        testPost.setTitle("Test Post");
+        testPost.setBody("This is a test of the body");
+        model.addAttribute("testPost", testPost);
+
+        postDao.findById(id);
+
+        return "posts/show";
+    }
 
     @GetMapping("/posts/create")
     public String viewPostForm(){
@@ -73,3 +76,5 @@ public class PostController {
     }
 
 }
+
+
