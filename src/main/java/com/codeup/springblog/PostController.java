@@ -67,7 +67,7 @@ public class PostController {
 
     @GetMapping("/posts/create")
     public String viewPostForm(){
-        return "view the form for creating a post";
+        return "this is the create page";
     }
 
     @PostMapping("/posts/create")

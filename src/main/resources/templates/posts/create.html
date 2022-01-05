@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Post</title>
+</head>
+<body>
+<form action="/posts/create" method="post">
+    <label>Blog Title</label>
+        <textarea name="createBlogTitle" placeholder="Type Title Here" cols="15"></textarea>
+    <br>
+    <label>Blog Body: </label>
+        <textarea name="createBlogBody" placeholder="Insert Body Here" rows="20" cols="15"></textarea>
+    <button type="submit" name="confirmCreation">Submit Post</button>
+</form>
+
+</body>
+</html>
