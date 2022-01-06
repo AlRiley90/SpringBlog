@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-    Post findByTitle(String title);
-    List<Post> findAllByTitle(String title);
-
-    Post deleteAllById(Long id);
+//    Post findByTitle(String title);
+//    List<Post> findAllByTitle(String title);
+//
+//    Post deleteAllById(Long id);
 //    void deleteById(Long id);
 }

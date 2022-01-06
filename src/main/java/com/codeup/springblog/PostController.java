@@ -7,15 +7,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
 import java.util.Optional;
 
 @Controller
 public class PostController {
     private final PostRepository postDao;
 
-    public PostController(PostRepository postDao){
+    private final UserRepository userDao;
+
+    public PostController(PostRepository postDao, UserRepository userDao){
         this.postDao = postDao;
+        this.userDao = userDao;
     }
 
     @GetMapping("/posts")
@@ -42,8 +44,9 @@ public class PostController {
         return "posts/edit";
     }
 
+    //This portion is necessary in order to save the changes made in the edits
     @PostMapping("/posts/edit/{id}")
-    public String editPost(@PathVariable Long id, @RequestParam String title, @RequestParam String body){
+    public String editPost(@PathVariable Long id, @RequestParam(name="postTitle") String title, @RequestParam(name="postBody") String body){
         Post post = postDao.getById(id);
         post.setTitle(title);
         post.setBody(body);
@@ -51,22 +54,37 @@ public class PostController {
         return "redirect:/posts";
     }
 
-
-
-    @GetMapping("/posts/{id}")
-    public String editIndividualPost(@PathVariable Long id, Model model){
-        Post testPost = new Post();
-        testPost.setTitle("Test Post");
-        testPost.setBody("This is a test of the body");
-        model.addAttribute("testPost", testPost);
-
-        postDao.findById(id);
+    @GetMapping("/posts/show/{id}")
+    public String showPost(@PathVariable Long id, Model model){
+        long userId = 13L;
+        Post post = postDao.getById(id);
+        User user = userDao.getById(13L);
+        model.addAttribute("post", post);
+        model.addAttribute("user", user);
 
         return "posts/show";
     }
 
+
+    @PostMapping("/posts/show/{id}")
+//    public String showIndividualPost(@PathVariable Long id,@RequestParam(name="postTitle") String title, Model model){
+//        Post testPost = new Post();
+//        long userId = 13;
+//        Post post = postDao.getById(id);
+//        post.setTitle(title);
+////        testPost.setTitle("Test Post");
+////        testPost.setBody("This is a test of the body");
+//        model.addAttribute("post", post);
+//
+//        postDao.findById(id);
+//        userDao.findById(userId);
+//        return "posts/show";
+//    }
+
     @GetMapping("/posts/create")
-    public String viewPostForm(){
+    public String viewPostForm(Model model){
+        Post newPost = new Post();
+        model.addAttribute("confirmCreation", postDao.save(newPost));
         return "this is the create page";
     }
 

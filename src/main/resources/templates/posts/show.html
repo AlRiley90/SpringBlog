@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Individual Post</title>
 </head>
 <body>
-
-<h1><span th:text="${testPost.getTitle()}"></span></h1>
-
+<form th:action="'/posts/show/' + ${post.getId()}" method="post">
+    <h1 ><span th:text="${post.getTitle()}"></span></h1>
+    <h4><span th:text="${user.getEmail()}"></span></h4>
+<!--<h4><span th:text="${}"</h4>-->
+</form>
 
 </body>
 </html>
