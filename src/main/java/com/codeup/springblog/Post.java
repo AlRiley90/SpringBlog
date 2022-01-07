@@ -2,7 +2,7 @@ package com.codeup.springblog;
 import javax.persistence.*;
 
 @Entity
-@Table(name="SpringBlog")
+@Table(name="posts")
 public class Post {
     @Id
 //    The following line allows for the auto-incrementing of id
@@ -16,8 +16,8 @@ public class Post {
     private String body;
 
     @ManyToOne
-    @JoinColumn(name="post_id")
-    private Post post;
+    @JoinColumn(name="user_id")
+    private User user;
 
     public Long getId() {
         return id;
@@ -42,7 +42,11 @@ public class Post {
         this.body = body;
     }
 
+    public User getUser() {
+        return user;
+    }
 
-
-
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

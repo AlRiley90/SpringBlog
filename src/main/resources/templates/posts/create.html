@@ -5,15 +5,15 @@
     <title>Create Post</title>
 </head>
 <body>
-<form action="/posts/create" method="post">
+<form th:action="@{/posts/create}" th:method="post" th:object="${post}">
     <label>Blog Title</label>
-        <textarea name="createBlogTitle" placeholder="Type Title Here" cols="15"></textarea>
+        <textarea name="createBlogTitle" th:field="*{title}" placeholder="Type Title Here" cols="15"></textarea>
     <br>
     <label>Blog Body: </label>
-        <textarea name="createBlogBody" placeholder="Insert Body Here" rows="20" cols="15"></textarea>
+        <textarea name="createBlogBody"th:field="*{body}" placeholder="Insert Body Here" rows="20" cols="25"></textarea>
 
 </form>
 
 <button type="submit" name="confirmCreation">Submit Post</button>
-
+</body>
 </html>

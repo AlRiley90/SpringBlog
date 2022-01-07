@@ -6,18 +6,17 @@
 </head>
 <body>
 <div th:each="post : ${posts}">
-
     <h2 th:text="${post.getTitle()}"></h2>
     <p th:text="${post.getBody()}"></p>
     <form action="/posts/index" method="post">
         <button name="deletePost" id="deletePost" th:value="${post.getId()}">Delete Post</button>
     </form>
-    <form th:action="'/posts/edit/' + ${post.getId()}">
+    <form th:action="'/posts/edit/' + ${post.getId()}" method="get">
         <button name="editPost" id="editPost" th:value="${post.getId()}">Edit Post</button>
     </form>
 </div>
 <br>
-<form action="/posts/create" method="post">
+<form action="/posts/create/" method="get">
     <button name="createPost">Create New Post</button>
 </form>
 

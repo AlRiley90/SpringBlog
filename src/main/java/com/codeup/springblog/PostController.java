@@ -2,10 +2,7 @@ package com.codeup.springblog;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -24,9 +21,10 @@ public class PostController {
     public String postIndex(Model model){
         model.addAttribute("posts", postDao.findAll());
 
-//        model.addAttribute("titles", postDao.findAllByTitle());
         return "posts/index";
     }
+
+    @GetMapping("/posts/{id}")
 
     @PostMapping("/posts/index")
     public String deletePost(@RequestParam(name="deletePost") Long id, Model model){
@@ -56,7 +54,7 @@ public class PostController {
 
     @GetMapping("/posts/show/{id}")
     public String showPost(@PathVariable Long id, Model model){
-        long userId = 13L;
+
         Post post = postDao.getById(id);
         User user = userDao.getById(13L);
         model.addAttribute("post", post);
@@ -66,31 +64,21 @@ public class PostController {
     }
 
 
-    @PostMapping("/posts/show/{id}")
-//    public String showIndividualPost(@PathVariable Long id,@RequestParam(name="postTitle") String title, Model model){
-//        Post testPost = new Post();
-//        long userId = 13;
-//        Post post = postDao.getById(id);
-//        post.setTitle(title);
-////        testPost.setTitle("Test Post");
-////        testPost.setBody("This is a test of the body");
-//        model.addAttribute("post", post);
-//
-//        postDao.findById(id);
-//        userDao.findById(userId);
-//        return "posts/show";
-//    }
-
     @GetMapping("/posts/create")
     public String viewPostForm(Model model){
-        Post newPost = new Post();
-        model.addAttribute("confirmCreation", postDao.save(newPost));
-        return "this is the create page";
+        model.addAttribute("post", new Post());
+        return "posts/create";
     }
 
     @PostMapping("/posts/create")
-    public String createPost(){
-        return "create a new post";
+    public String createPost(@RequestParam(name="createPostTitle") String title, @RequestParam(name="createPostBody") String body){
+        Post post = new Post();
+       post.setUser(userDao.getById(1L));
+       post.setTitle(title);
+       post.setBody(body);
+        postDao.save(post);
+
+        return "redirect:/posts";
     }
 
 }
