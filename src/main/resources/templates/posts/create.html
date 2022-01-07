@@ -7,13 +7,13 @@
 <body>
 <form th:action="@{/posts/create}" th:method="post" th:object="${post}">
     <label>Blog Title</label>
-        <textarea name="createBlogTitle" th:field="*{title}" placeholder="Type Title Here" cols="15"></textarea>
+        <input type="text" th:field="*{title}" id="postTitle" placeholder="Type Title Here">
     <br>
     <label>Blog Body: </label>
-        <textarea name="createBlogBody"th:field="*{body}" placeholder="Insert Body Here" rows="20" cols="25"></textarea>
-
+        <input type="text" th:field="*{body}" id="postBody" placeholder="Insert Body Here">
+    <button type="submit">Submit Post</button>
 </form>
 
-<button type="submit" name="confirmCreation">Submit Post</button>
+
 </body>
 </html>

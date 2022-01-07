@@ -25,6 +25,9 @@ public class PostController {
     }
 
     @GetMapping("/posts/{id}")
+    public String individualPost(@PathVariable long id){
+        return "posts/show";
+    }
 
     @PostMapping("/posts/index")
     public String deletePost(@RequestParam(name="deletePost") Long id, Model model){
@@ -56,9 +59,8 @@ public class PostController {
     public String showPost(@PathVariable Long id, Model model){
 
         Post post = postDao.getById(id);
-        User user = userDao.getById(13L);
         model.addAttribute("post", post);
-        model.addAttribute("user", user);
+//        model.addAttribute("user", user);
 
         return "posts/show";
     }
@@ -71,11 +73,9 @@ public class PostController {
     }
 
     @PostMapping("/posts/create")
-    public String createPost(@RequestParam(name="createPostTitle") String title, @RequestParam(name="createPostBody") String body){
-        Post post = new Post();
+    public String createPost(@ModelAttribute Post post){
        post.setUser(userDao.getById(1L));
-       post.setTitle(title);
-       post.setBody(body);
+
         postDao.save(post);
 
         return "redirect:/posts";
