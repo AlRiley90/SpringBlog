@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:fragment="header">
     <meta charset="UTF-8">
     <title>Home</title>
-
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<header  th:fragment="head"><h6>Test Header!!</h6></header>
+<!--<div th:fragment="eagleImg"><img class="eagle" src="../img/EagleHeading.png" alt="eaglesLogo"></div>-->
     <nav th:fragment="navbar">
-        <li>Item 1</li>
-        <li>Item 2</li>
-        <li> Item 3</li>
+        <a href="posts/create.html">Create Post</a>
     </nav>
+<!--th:src-->
 <footer th:fragment="foot"><h6>Test Footer!</h6></footer>
 </body>
 </html>

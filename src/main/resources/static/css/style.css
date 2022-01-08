@@ -1,0 +1,16 @@
+.eagle {
+   /*margin-top: -270px;*/
+
+}
+
+.flex-container{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+body {
+   font-family: "Comic Sans MS", serif;
+   background-image: url("../img/FieldBackground.png");
+   background-size: cover;
+}

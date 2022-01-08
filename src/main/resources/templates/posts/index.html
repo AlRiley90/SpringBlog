@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="partials :: header">
     <meta charset="UTF-8">
     <title>Post Index</title>
 </head>
-<body>
+<body class="flex-container">
+<!--<div class="eagleDiv" th:replace="partials :: eagleImg"></div>-->
 <div th:each="post : ${posts}">
     <h2 th:text="${post.getTitle()}"></h2>
     <p th:text="${post.getBody()}"></p>
