@@ -4,24 +4,33 @@
     <meta charset="UTF-8">
     <title>Post Index</title>
 </head>
-<body class="flex-container">
-<!--<div class="eagleDiv" th:replace="partials :: eagleImg"></div>-->
-<div th:each="post : ${posts}">
-    <h2 th:text="${post.getTitle()}"></h2>
-    <p th:text="${post.getBody()}"></p>
-    <form action="/posts/index" method="post">
-        <button name="deletePost" id="deletePost" th:value="${post.getId()}">Delete Post</button>
-    </form>
-    <form th:action="'/posts/edit/' + ${post.getId()}" method="get">
-        <button name="editPost" id="editPost" th:value="${post.getId()}">Edit Post</button>
-    </form>
+<body>
+<div class="banner">
+
 </div>
-<br>
-<form action="/posts/create/" method="get">
-    <button name="createPost">Create New Post</button>
-</form>
+<!--<div class="eagleDiv" th:replace="partials :: eagleImg"></div>-->
+    <div class="flex-container postSection">
+        <div th:each="post : ${posts}">
+            <h2 th:text="${post.getTitle()}"></h2>
+            <p th:text="${post.getBody()}"></p>
+            <form action="/posts/index" method="post">
+                <button name="deletePost" id="deletePost" th:value="${post.getId()}">Delete Recipe</button>
+            </form>
+            <form th:action="'/posts/edit/' + ${post.getId()}" method="get">
+                <button name="editPost" id="editPost" th:value="${post.getId()}">Edit Recipe</button>
+            </form>
+        </div>
+        <br>
+        <form action="/posts/create/" method="get">
+            <button name="createPost">Create New Recipe</button>
+        </form>
+    </div>
+<!--<br>-->
+<!--<br>-->
 
 </body>
+<br>
+<footer th:replace="partials :: foot"></footer>
 </html>
 
 

@@ -9,8 +9,24 @@
    align-items: center;
 }
 
-body {
+.banner{
+   background-image: url("../img/FoodBlogBanner.gif");
+   height: 650px;
+   width: 100%;
+
+}
+
+.postSection {
    font-family: "Comic Sans MS", serif;
-   background-image: url("../img/FieldBackground.png");
-   background-size: cover;
+   /*background-image: url("../img/FieldBackground.png");*/
+   /*background-size: auto;*/
+   background-color: #8ecae6;
+
+}
+
+h2{
+   color: #fb8500;
+}
+p{
+   color: black;
 }
