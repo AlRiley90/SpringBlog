@@ -1,5 +1,7 @@
 package com.codeup.springblog;
 
+import com.codeup.springblog.services.EmailServices;
+import com.codeup.springblog.services.EmailServices;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,10 +13,12 @@ public class PostController {
     private final PostRepository postDao;
 
     private final UserRepository userDao;
+    private final EmailServices emailService;
 
-    public PostController(PostRepository postDao, UserRepository userDao){
+    public PostController(PostRepository postDao, UserRepository userDao, EmailServices emailService){
         this.postDao = postDao;
         this.userDao = userDao;
+        this.emailService = emailService;
     }
 
     @GetMapping("/posts")
@@ -76,6 +80,11 @@ public class PostController {
     public String createPost(@ModelAttribute Post post){
        post.setUser(userDao.getById(1L));
 
+       //The following line allows for the creation of subject or body messages that use User info for messaging
+       String emailSubject = post.getUser().getUsername() + ", your post has been created!";
+
+       //The following line is necessary to send an email to the user upon creation of a new post
+        emailService.prepareAndSend(post, emailSubject, "Congratulations - your latest blog post is up and ready to view on Food For Thought");
         postDao.save(post);
 
         return "redirect:/posts";
