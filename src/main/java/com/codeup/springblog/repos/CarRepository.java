@@ -1,5 +1,6 @@
-package com.codeup.springblog;
+package com.codeup.springblog.repos;
 
+import com.codeup.springblog.models.Car;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
