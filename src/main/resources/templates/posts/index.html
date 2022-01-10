@@ -10,7 +10,7 @@
 </div>
 <!--<div class="eagleDiv" th:replace="partials :: eagleImg"></div>-->
     <div class="flex-container postSection">
-        <div th:each="post : ${posts}">
+        <div class="recipes" th:each="post : ${posts}">
             <h2 th:text="${post.getTitle()}"></h2>
             <p th:text="${post.getBody()}"></p>
             <form action="/posts/index" method="post">

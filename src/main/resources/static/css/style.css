@@ -20,12 +20,18 @@
    font-family: "Comic Sans MS", serif;
    /*background-image: url("../img/FieldBackground.png");*/
    /*background-size: auto;*/
-   background-color: #8ecae6;
+   background-color: white;
+   border: outset 3px dodgerblue;
+
 
 }
 
+.recipes{
+   margin: 10px;
+}
+
 h2{
-   color: #fb8500;
+   /*color: #fb8500;*/
 }
 p{
    color: black;
